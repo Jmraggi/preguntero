@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preguntero</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Preguntero</h1>
+    <section id="question-management">
+        <h2>Gestión de Preguntas</h2>
+        <textarea id="question-data" placeholder="Ingresa preguntas en formato JSON"></textarea>
+        <button id="generate-exam">Generar Examen</button>
+    </section>
+    <section id="exam-section" style="display: none;">
+        <h2>Examen</h2>
+        <ul id="exam-question-list"></ul>
+        <button id="submit-exam">Enviar Respuestas</button>
+    </section>
+    <script src="script.js"></script>
+</body>
+</html>
