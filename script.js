@@ -17,6 +17,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 throw new Error('El formato de las preguntas no es válido.');
             }
 
+            // Limitar a un máximo de 20 preguntas
+            questions = questions.slice(0, 20);
+
             // Limpiar el área de preguntas del examen
             examQuestionList.innerHTML = '';
 
