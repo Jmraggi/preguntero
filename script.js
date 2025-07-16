@@ -26,17 +26,20 @@ document.addEventListener('DOMContentLoaded', function () {
             // Generar preguntas dinámicamente
             questions.forEach(({ question, options }, index) => {
                 const listItem = document.createElement('li');
+                listItem.classList.add('list-group-item');
                 listItem.innerHTML = `<strong>${index + 1}. ${question}</strong>`;
 
                 const optionsContainer = document.createElement('div');
-                optionsContainer.classList.add('options');
+                optionsContainer.classList.add('mt-2');
 
                 options.forEach(option => {
                     const label = document.createElement('label');
+                    label.classList.add('d-block', 'form-check-label');
                     const input = document.createElement('input');
                     input.type = 'radio';
                     input.name = `question-${index}`;
                     input.value = option;
+                    input.classList.add('form-check-input', 'me-2');
                     label.appendChild(input);
                     label.appendChild(document.createTextNode(option));
                     optionsContainer.appendChild(label);
@@ -48,6 +51,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Mostrar la sección del examen
             examSection.style.display = 'block';
+
+            // Mostrar el botón de enviar examen
+            submitExamButton.style.display = 'block';
         } catch (error) {
             alert('Error al cargar preguntas: ' + error.message);
             console.error('Error al cargar preguntas:', error);
