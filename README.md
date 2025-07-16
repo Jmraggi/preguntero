@@ -36,59 +36,46 @@ Este proyecto es una herramienta interactiva que permite gestionar preguntas y r
 
 ## Instrucciones para generar el JSON con ChatGPT
 
-### 1. Si ya tienes preguntas
+Genera preguntas de examen en formato JSON con la siguiente estructura:
 
-Para generar preguntas en formato JSON que sean compatibles con esta página, utiliza el siguiente prompt en ChatGPT:
-
+Para preguntas de UNA SOLA respuesta correcta:
 ```
-Quisiera que me generes preguntas en formato JSON para un multiple choice. Cada pregunta debe incluir:
-- Una clave "question" con el texto de la pregunta.
-- Una clave "options" con un array de opciones de respuesta.
-- Una clave "correct_answer" con la respuesta correcta.
-
-Ejemplo de salida esperada:
-[
-  {
-    "question": "¿Cuál es la capital de Francia?",
-    "options": ["París", "Londres", "Madrid"],
-    "correct_answer": "París"
-  },
-  {
-    "question": "¿Cuál es 2 + 2?",
-    "options": ["3", "4", "5"],
-    "correct_answer": "4"
-  }
-]
+{
+  "question": "¿Cuál es la capital de Francia?",
+  "options": ["París", "Londres", "Madrid", "Roma", "Berlín"],
+  "correct_answer": "París"
+}
 ```
 
-### 2. Si tienes un texto y necesitas generar preguntas
-
-Si tienes un texto y deseas que ChatGPT genere preguntas de opción múltiple basadas en ese texto, utiliza el siguiente prompt:
-
+Para preguntas de MÚLTIPLES respuestas correctas:
 ```
-Tengo el siguiente texto:
-
-[PEGA AQUÍ TU TEXTO]
-
-Quisiera que generes preguntas de opción múltiple basadas en este texto. Cada pregunta debe incluir:
-- Una clave "question" con el texto de la pregunta.
-- Una clave "options" con un array de opciones de respuesta.
-- Una clave "correct_answer" con la respuesta correcta.
-
-Ejemplo de salida esperada:
-[
-  {
-    "question": "¿Cuál es el tema principal del texto?",
-    "options": ["Opción 1", "Opción 2", "Opción 3"],
-    "correct_answer": "Opción correcta"
-  },
-  {
-    "question": "¿Qué se menciona como un beneficio en el texto?",
-    "options": ["Opción A", "Opción B", "Opción C"],
-    "correct_answer": "Opción correcta"
-  }
-]
+{
+  "question": "¿Cuáles de los siguientes son lenguajes de programación?",
+  "options": ["JavaScript", "HTML", "Python", "CSS", "Java"],
+  "correct_answers": ["JavaScript", "Python", "Java"]
+}
 ```
+
+Para preguntas de VERDADERO o FALSO:
+```
+{
+  "question": "¿La capital de Francia es París?",
+  "options": ["Verdadero", "Falso"],
+  "correct_answer": "Verdadero"
+}
+```
+
+**Reglas importantes:**
+- Usa "correct_answer" (singular) para preguntas de una sola respuesta
+- Usa "correct_answers" (plural, array) para preguntas de múltiples respuestas
+- **GENERA TODAS LAS PREGUNTAS** - No omitas ninguna pregunta del listado
+- **Las preguntas y respuestas deben ser EXACTAMENTE como las escribo** - No cambies la redacción
+- **Todas las preguntas deben tener exactamente 5 respuestas** (excepto verdadero/falso)
+- **Para preguntas de verdadero/falso, usa solo 2 opciones: "Verdadero" y "Falso"**
+- Las opciones incorrectas deben ser plausibles pero claramente incorrectas
+- Dificultad media-alta en las opciones distractoras
+
+El formato final debe ser un array JSON válido que contenga todas las preguntas.
 
 ---
 

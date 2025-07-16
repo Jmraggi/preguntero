@@ -14,14 +14,19 @@
         <div class="mb-3">
             <textarea id="question-data" class="form-control" rows="8" placeholder="Ingrese las preguntas en formato JSON. Para respuestas múltiples use 'correct_answers' (array), para una sola use 'correct_answer' (string)"></textarea>
         </div>
-        <div class="alert alert-info" role="alert">
-            <strong>Formato JSON:</strong><br>
-            • Para una respuesta: <code>"correct_answer": "Opción A"</code><br>
-            • Para múltiples respuestas: <code>"correct_answers": ["Opción A", "Opción B"]</code>
-        </div>
         <div class="d-flex justify-content-between mb-4">
             <button id="generate-exam" class="btn btn-primary">Generar Examen</button>
             <button id="submit-exam" class="btn btn-success" style="display: none;">Enviar Examen</button>
+        </div>
+        <div id="results-section" style="display: none;" class="mb-4">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">📊 Resultados del Examen</h5>
+                </div>
+                <div class="card-body">
+                    <div id="results-content"></div>
+                </div>
+            </div>
         </div>
         <div id="exam-section" style="display: none;">
             <ul id="exam-question-list" class="list-group"></ul>
