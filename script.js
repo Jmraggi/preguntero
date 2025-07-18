@@ -14,6 +14,16 @@ document.addEventListener('DOMContentLoaded', function () {
         return shuffled.slice(0, count);
     }
 
+    // Función para mezclar aleatoriamente un array (algoritmo de Fisher-Yates)
+    function shuffleArray(array) {
+        const shuffled = [...array]; // Crear una copia del array original
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
+    }
+
     // Generar el examen
     generateExamButton.addEventListener('click', function () {
         const questionData = document.getElementById('question-data').value.trim();
@@ -34,6 +44,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 const { question, options, correct_answer, correct_answers } = questionObj;
                 const isMultipleChoice = Array.isArray(correct_answers) && correct_answers.length > 1;
                 
+                // Mezclar las opciones aleatoriamente para mayor dificultad
+                const shuffledOptions = shuffleArray(options);
+                
                 const listItem = document.createElement('li');
                 listItem.classList.add('list-group-item');
                 
@@ -47,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const optionsContainer = document.createElement('div');
                 optionsContainer.classList.add('mt-2');
 
-                options.forEach(option => {
+                shuffledOptions.forEach(option => {
                     const label = document.createElement('label');
                     label.classList.add('d-block', 'form-check-label');
                     const input = document.createElement('input');
